@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>蔡恩典</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .bg-animate {
+      background: linear-gradient(-45deg, #1f1f1f, #3f3f3f, #1f1f1f);
+      background-size: 400% 400%;
+      animation: gradientMove 10s ease infinite;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .line {
+      position: absolute;
+      width: 1px;
+      height: 100px;
+      background-color: rgba(255, 255, 255, 0.2);
+      animation: floatLine linear infinite;
+    }
+
+    @keyframes floatLine {
+      0% {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-200px);
+        opacity: 0;
+      }
+    }
+
+    .dot {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background-color: white;
+      border-radius: 9999px;
+      opacity: 0.3;
+      animation: floatDot infinite linear;
+    }
+
+    @keyframes floatDot {
+      0% {
+        transform: translateY(0px);
+        opacity: 0.3;
+      }
+      50% {
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateY(-20px);
+        opacity: 0.3;
+      }
+    }
+
+    /* 雲霧效果 */
+    .fog {
+      position: absolute;
+      width: 400px;
+      height: 300px;
+      background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.07), transparent);
+      filter: blur(30px);
+      opacity: 0.5;
+      animation: fogMove 40s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes fogMove {
+      0% {
+        transform: translateX(-50px) translateY(0px) scale(1);
+        opacity: 0.3;
+      }
+      50% {
+        transform: translateX(50px) translateY(10px) scale(1.1);
+        opacity: 0.5;
+      }
+      100% {
+        transform: translateX(-50px) translateY(0px) scale(1);
+        opacity: 0.3;
+      }
+    }
+  </style>
+</head>
+<body class="bg-animate flex flex-col items-center justify-center h-screen relative text-center text-white">
+  <!-- 雲霧 -->
+  <div class="fog" style="top: 20%; left: 30%; animation-delay: 0s;"></div>
+  <div class="fog" style="top: 30%; left: 50%; animation-delay: 10s;"></div>
+  <div class="fog" style="top: 25%; left: 70%; animation-delay: 20s;"></div>
+
+  <!-- 中央自我介紹灰框 (玻璃擬態) -->
+  <div class="z-10 fixed inset-6 bg-gray-800/60 backdrop-blur-xl rounded-2xl shadow-2xl flex flex-col items-center justify-center text-center p-10">
+    <h2 class="text-4xl font-bold mb-6">我</h2>
+    <p class="max-w-3xl text-lg leading-relaxed text-white/90">
+      蔡恩典是一位新世代影片創作者與網絡觀察者，<br>
+      專注於程式設計的學習，同時挑戰音樂創作與影片創坐等全新的領域。<br>
+      製作的項目領域從社會觀察到自我探索。<br>
+Sanvan is a new-generation video creator and online observer,<br>
+focusing on learning programming while also venturing into music production and video creation.<br>
+His projects range from social commentary to personal exploration.
+    </p>
+  </div>
+
+
+  <!-- 頁面底部連結 -->
+  <div class="absolute bottom-6 z-10 flex space-x-6 text-sm text-white/70 hover:[&>a]:text-white transition-all">
+    <a href="https://edian.work" target="_blank" class="hover:underline">main</a>
+    <a href="https://edian.work/works" target="_blank" class="hover:underline">products</a>
+    <a href="mailto:dreyu203gmail.com" target="_blank" class="hover:underline">connact</a>
+  </div>
+
+  <!-- 白線與白點 -->
+  <script>
+    const lineCount = 60;
+    for (let i = 0; i < lineCount; i++) {
+      const line = document.createElement('div');
+      line.className = 'line';
+      line.style.left = `${Math.random() * 100}vw`;
+      line.style.top = `${Math.random() * 100}vh`;
+      line.style.animationDuration = `${5 + Math.random() * 10}s`;
+      line.style.animationDelay = `${Math.random() * 5}s`;
+      document.body.appendChild(line);
+    }
+
+    const dotCount = 150;
+    for (let i = 0; i < dotCount; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'dot';
+      dot.style.left = `${Math.random() * 100}vw`;
+      dot.style.top = `${Math.random() * 100}vh`;
+      dot.style.animationDuration = `${4 + Math.random() * 6}s`;
+      dot.style.animationDelay = `${Math.random() * 5}s`;
+      document.body.appendChild(dot);
+    }
+  </script>
+</body>
+</html>
